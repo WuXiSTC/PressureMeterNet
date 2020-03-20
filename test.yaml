@@ -1,0 +1,51 @@
+ServerInfo:
+    ServerID: qwer
+    ServiceType: wqer
+    AdditionalInfo: qwer
+GogisnetOption:
+    InitServerOption:
+        ServerID: qwer
+        ServiceType: qwer
+        S2SAddress: qwer
+        S2CAddress: qwer
+    ServiceOption:
+        S2SRegistryOption:
+            MaxRegistrants: 1234
+            LogTimeoutControllerOption:
+                MinimumTime: 1234
+                MaximumTime: 1234
+                IncreaseFactor: 1234
+        S2SRegistrantOption:
+            RegistryN: 1234
+        S2CRegistryOption:
+            MaxRegistrants: 1234
+            LogTimeoutControllerOption:
+                MinimumTime: 1234
+                MaximumTime: 1234
+                IncreaseFactor: 1234.1234
+    GRPCOption:
+        S2SRegistryOption:
+            BufferSize: 1234
+        S2CRegistryOption:
+            BufferSize: 1234
+        S2SRegistrantOption:
+            MaxDialHoldDuration: 1234
+        CandidateListOption:
+            InitTimeLimit: 1234
+            InitRetryLimit: 1234
+            Size: 1234
+            PingTimeLimit: 1234
+        GraphQueryOption:
+            GraphQueryClientOption:
+                MaxDialHoldDuration: 1234
+    BoardCastOption:
+        S2SBoardCastAddr: qwer
+        S2CBoardCastAddr: qwer
+        GraphQueryBoardCastAddr: qwer
+ListenerOption:
+    s2slistennetwork: qwer
+    s2slistenaddr: qwer
+    s2clistennetwork: qwer
+    s2clistenaddr: qwer
+    graphquerylistennetwork: qwer
+    graphquerylistenaddr: qwer
