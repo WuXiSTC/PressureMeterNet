@@ -3,10 +3,11 @@ package option
 import (
 	"fmt"
 	"gopkg.in/yaml.v3"
+	"reflect"
 	"testing"
 )
 
-func YAMLTest(t *testing.T, i interface{}) {
+func YAMLTest(t *testing.T, i *Option) {
 	is, err := yaml.Marshal(i)
 	if err != nil {
 		t.Log(err)
@@ -16,15 +17,15 @@ func YAMLTest(t *testing.T, i interface{}) {
 	if err = yaml.Unmarshal(is, i); err != nil {
 		t.Log(err)
 	} else {
-		printStructOption(i, "YAMLTest", func(i ...interface{}) {
+		printValue(reflect.ValueOf(i), "YAMLTest", func(i ...interface{}) {
 			fmt.Println(i...)
 		})
 	}
 }
 
 func TestOption(t *testing.T) {
-	opt := GenerateOption(func(i ...interface{}) {
+	opt := Generate(func(i ...interface{}) {
 		t.Log(i...)
 	})
-	YAMLTest(t, opt)
+	YAMLTest(t, &opt)
 }

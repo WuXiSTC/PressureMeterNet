@@ -3,106 +3,41 @@ package option
 import (
 	"gitee.com/WuXiSTC/PressureMeter"
 	"gitee.com/WuXiSTC/PressureMeter/Model"
-	"gitee.com/WuXiSTC/PressureMeter/Model/Daemon"
-	"gitee.com/WuXiSTC/PressureMeter/Model/Task"
 	"reflect"
 	"regexp"
 	"strings"
 )
 
 type PressureMeterConfig struct {
-	ModelConfig ModelConfig
-	URLConfig   URLConfig
+	ModelConfig Model.Config `yaml:"ModelConfig" usage:"Configuration for Model in PressureMeter."`
+	URLConfig   URLConfig    `yaml:"URLConfig" usage:"Configuration for URL of iris server in PressureMeter."`
 }
 
 func DefaultPressureMeterConfig() PressureMeterConfig {
 	return PressureMeterConfig{
-		ModelConfig: DefaultModelConfig(),
-		URLConfig:   DefaultURLConfig(),
+		ModelConfig: Model.DefaultConfig(),
+		URLConfig:   defaultURLConfig(),
 	}
 }
 func (o PressureMeterConfig) PutConfig(op *PressureMeter.Config) {
-	o.ModelConfig.PutOption(&op.ModelConfig)
+	op.ModelConfig = o.ModelConfig
 	o.URLConfig.PutOption(&op.URLConfig)
 }
 
-type ModelConfig struct {
-	DaemonConfig DaemonConfig
-	TaskConfig   TaskConfig
-}
-
-func DefaultModelConfig() ModelConfig {
-	return ModelConfig{
-		DaemonConfig: DefaultDaemonConfig(),
-		TaskConfig:   DefaultTaskConfig(),
-	}
-}
-func (o ModelConfig) PutOption(op *Model.Config) {
-	o.DaemonConfig.PutOption(&op.DaemonConfig)
-	o.TaskConfig.PutOption(&op.TaskConfig)
-}
-
-type DaemonConfig struct {
-	TaskAccN  *uint64
-	TaskQSize *uint64
-}
-
-func DefaultDaemonConfig() DaemonConfig {
-	TaskAccN := uint64(4)
-	TaskQSize := uint64(16)
-	return DaemonConfig{
-		TaskAccN:  &TaskAccN,
-		TaskQSize: &TaskQSize,
-	}
-}
-func (o DaemonConfig) PutOption(op *Daemon.Config) {
-	op.TaskAccN = *o.TaskAccN
-	op.TaskQSize = *o.TaskQSize
-}
-
-type TaskConfig struct {
-	JmxDir *string
-	JtlDir *string
-	LogDir *string
-}
-
-func DefaultTaskConfig() TaskConfig {
-	JmxDir, JtlDir, LogDir := "Data/jmx", "Data/jtl", "Data/log"
-	return TaskConfig{
-		JmxDir: &JmxDir,
-		JtlDir: &JtlDir,
-		LogDir: &LogDir,
-	}
-}
-func (o TaskConfig) PutOption(op *Task.Config) {
-	op.JmxDir = *o.JmxDir
-	op.JtlDir = *o.JtlDir
-	op.LogDir = *o.LogDir
-}
-
 type URLConfig struct {
-	NewTask    *string
-	DeleteTask *string
-	GetConfig  *string
-	GetResult  *string
-	GetLog     *string
-	StartTask  *string
-	StopTask   *string
-	GetState   *string
+	NewTask    string `yaml:"NewTask" usage:"URL for creating new task."`
+	DeleteTask string `yaml:"DeleteTask" usage:"URL for deleting task."`
+	GetConfig  string `yaml:"GetConfig" usage:"URL for getting jmx file of the task."`
+	GetResult  string `yaml:"GetResult" usage:"URL for getting jtl file of the task."`
+	GetLog     string `yaml:"GetLog" usage:"URL of for getting log file of the task."`
+	StartTask  string `yaml:"StartTask" usage:"URL for starting a task."`
+	StopTask   string `yaml:"StopTask" usage:"URL for stopping a task."`
+	GetState   string `yaml:"GetState" usage:"URL for getting the running state of a task."`
 }
 
-func DefaultURLConfig() URLConfig {
-	URLConfig := URLConfig{
-		NewTask:    new(string),
-		DeleteTask: new(string),
-		GetConfig:  new(string),
-		GetResult:  new(string),
-		GetLog:     new(string),
-		StartTask:  new(string),
-		StopTask:   new(string),
-		GetState:   new(string),
-	}
-	ConfigValue := reflect.ValueOf(URLConfig)
+func defaultURLConfig() URLConfig {
+	URLConfig := URLConfig{}
+	ConfigValue := reflect.ValueOf(&URLConfig).Elem()
 
 	PMURLConfig := PressureMeter.DefaultConfig().URLConfig
 	PMConfigValue := reflect.ValueOf(PMURLConfig)
@@ -111,7 +46,7 @@ func DefaultURLConfig() URLConfig {
 	for i := 0; i < PMConfigValue.NumField(); i++ {
 		PMFieldValue := strings.Join(PMConfigValue.Field(i).Interface().([]string), "/")
 		PMFieldName := PMConfigType.Field(i).Name
-		*(ConfigValue.FieldByName(PMFieldName).Interface().(*string)) = PMFieldValue
+		ConfigValue.FieldByName(PMFieldName).Set(reflect.ValueOf(PMFieldValue))
 	}
 	return URLConfig
 }
@@ -124,7 +59,7 @@ func (o URLConfig) PutOption(op *PressureMeter.URLConfig) {
 	for i := 0; i < PMConfigValue.NumField(); i++ {
 		PMFieldName := PMConfigType.Field(i).Name
 		FieldValue := ConfigValue.FieldByName(PMFieldName)
-		PMFieldValue := *(FieldValue.Interface().(*string))
+		PMFieldValue := FieldValue.Interface().(string)
 		PMFieldValue = re.ReplaceAllString(PMFieldValue, "")   //去除非法字符
 		PMFieldValue = rex.ReplaceAllString(PMFieldValue, "/") //去除多余斜杠
 		PMConfigValue.Field(i).Set(reflect.ValueOf(&PMFieldValue))
