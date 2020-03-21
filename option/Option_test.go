@@ -24,7 +24,7 @@ func YAMLTest(t *testing.T, i *Option) {
 }
 
 func TestOption(t *testing.T) {
-	opt := Generate(func(i ...interface{}) {
+	opt, _ := Generate(func(i ...interface{}) {
 		t.Log(i...)
 	})
 	YAMLTest(t, &opt)

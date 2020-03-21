@@ -9,8 +9,8 @@ import (
 	"reflect"
 )
 
-func Generate(logger func(i ...interface{})) (opt Option) {
-	opt = DefaultOption()
+func Generate(logger func(i ...interface{})) (opt Option, exit bool) {
+	opt, exit = DefaultOption(), false
 	file := flag.String("UseConfigFile", "", "Set this value to load option from a config file at this path (Must be a .yaml file).")
 	gfile := flag.String("GenerateConfigFile", "", "Set this value to generate a option file.")
 	generateValue(reflect.ValueOf(&opt), "", "")
@@ -41,6 +41,8 @@ func Generate(logger func(i ...interface{})) (opt Option) {
 			panic(err)
 		}
 		logger(fmt.Sprintf("%d bytes written to %s", n, path))
+		exit = true
+		return
 	}
 	printValue(reflect.ValueOf(&opt), "", func(i ...interface{}) { logger(i...) })
 	return
@@ -67,7 +69,6 @@ func generateValue(Value reflect.Value, ValueName, ValueUsage string) {
 func printValue(Value reflect.Value, ValueName string, logger func(...interface{})) {
 	operateValue(Value, ValueName, "",
 		func(Value reflect.Value, ValueName, ValueUsage string) {
-			Value = Value.Elem()
 			p := func(TypeStr string) {
 				logger(ValueName, fmt.Sprintf("=(%s)", TypeStr), Value.Interface())
 			}
@@ -106,7 +107,7 @@ func operateValue(Value reflect.Value, ValueName, ValueUsage string,
 		if field.Type.Kind() == reflect.Struct { //如果还是一个结构体
 			operateValue(fieldValue.Addr(), fieldName, fieldTag, operation) //就递归
 		} else { //不是结构体，那么执行操作
-			operation(fieldValue.Addr(), fieldName, fieldTag)
+			operation(fieldValue, fieldName, fieldTag)
 		}
 	}
 }

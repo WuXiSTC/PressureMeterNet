@@ -3,20 +3,16 @@ package main
 import (
 	"PressureMeterMaster/option"
 	"fmt"
-	pb "github.com/yindaheng98/gogisnet/grpc/protocol/protobuf"
 )
 
 func main() {
-	opt := option.GenerateOption(func(i ...interface{}) {
+	opt, exit := option.Generate(func(i ...interface{}) {
 		fmt.Println(i...)
 	})
-	ServerInfoOption := opt.ServerInfo
-	GogisnetOption := opt.GogisnetOption
-	ListenerOption := opt.GRPCListenerOption
-	PressureMeterConfig := opt.PressureMeterConfig
-	ServerInfo := new(pb.ServerInfo)
-	ServerInfoOption.PutOption(ServerInfo)
-	s := grpc.NewServer(ServerInfo, GogisnetOption.PutOption())
+	if exit { //如果要退出
+		return //就直接退出
+	}
+	fmt.Println(opt)
 	/*
 		ServerInfoOption, GogisnetOption, ListenerOption := option.GenerateOption()
 		ServerInfo := new(pb.ServerInfo)
