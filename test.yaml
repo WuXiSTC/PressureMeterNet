@@ -22,27 +22,27 @@ GogisnetOption:
             BoardCastAddr: qwe
             MaxRegistrants: 123
             TimeoutControllerOption:
-                MinimumTime: 123s
-                MaximumTime: 123s
+                MinimumTime: 2m3s
+                MaximumTime: 2m3s
                 IncreaseFactor: 123
         S2SRegistrantOption:
             RegistryN: 123
             RetryNControllerOption:
                 K_RetryN: 123
                 B_RetryN: 123
-                K_SendTime: 123s
-                B_SendTime: 123s
+                K_SendTime: 2m3s
+                B_SendTime: 2m3s
             CandidateListOption:
-                DefaultTimeout: 123s
+                DefaultTimeout: 2m3s
                 DefaultRetryN: 123
                 Size: 123
-                MaxPingTimeout: 123s
+                MaxPingTimeout: 2m3s
         S2CRegistryOption:
             BoardCastAddr: qwe
             MaxRegistrants: 123
             TimeoutControllerOption:
-                MinimumTime: 123s
-                MaximumTime: 123s
+                MinimumTime: 2m3s
+                MaximumTime: 2m3s
                 IncreaseFactor: 123
     GRPCOption:
         S2SRegistryOption:
@@ -50,10 +50,10 @@ GogisnetOption:
         S2CRegistryOption:
             BufferSize: 123
         S2SRegistrantOption:
-            MaxDialHoldDuration: 123s
+            MaxDialHoldDuration: 2m3s
         GraphQueryOption:
             GraphQueryClientOption:
-                MaxDialHoldDuration: 123s
+                MaxDialHoldDuration: 2m3s
     InitServerOption:
         ServerInfoOption:
             ServerID: qwe
@@ -68,3 +68,12 @@ GogisnetOption:
                 GraphQueryBroadCastAddr: qwe
                 AdditionalInfo: qwe
             BoardCastAddr: qwe
+ListenerOption:
+    GogisnetListenerOption:
+        S2SListenNetwork: qwe
+        S2SListenAddr: qwe
+        S2CListenNetwork: qwe
+        S2CListenAddr: qwe
+        GraphQueryListenNetwork: qwe
+        GraphQueryListenAddr: qwe
+    PressureMeterListenAddr: qwe
