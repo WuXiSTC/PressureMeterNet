@@ -1,0 +1,84 @@
+ServerInfoOption:
+    ServerID: qwe
+    ServiceType: qwe
+    GraphQueryBroadCastAddr: qwe
+    AdditionalInfo: qwe
+PressureMeterConfig:
+    ModelConfig:
+        DaemonConfig:
+            TaskAccN: 123
+            TaskQSize: 123
+        TaskConfig:
+            JmxDir: qwe
+            JtlDir: qwe
+            logDir: qwe
+    URLConfig:
+        NewTask: qwe
+        DeleteTask: qwe
+        GetConfig: qwe
+        GetResult: qwe
+        GetLog: qwe
+        StartTask: qwe
+        StopTask: qwe
+        GetState: qwe
+GogisnetOption:
+    ServiceOption:
+        S2SRegistryOption:
+            BoardCastAddr: qwe
+            MaxRegistrants: 123
+            TimeoutControllerOption:
+                MinimumTime: 2m3s
+                MaximumTime: 2m3s
+                IncreaseFactor: 123
+        S2SRegistrantOption:
+            RegistryN: 123
+            RetryNControllerOption:
+                K_RetryN: 123
+                B_RetryN: 123
+                K_SendTime: 2m3s
+                B_SendTime: 2m3s
+            CandidateListOption:
+                DefaultTimeout: 2m3s
+                DefaultRetryN: 123
+                Size: 123
+                MaxPingTimeout: 2m3s
+        S2CRegistryOption:
+            BoardCastAddr: qwe
+            MaxRegistrants: 123
+            TimeoutControllerOption:
+                MinimumTime: 2m3s
+                MaximumTime: 2m3s
+                IncreaseFactor: 123
+    GRPCOption:
+        S2SRegistryOption:
+            BufferSize: 123
+        S2CRegistryOption:
+            BufferSize: 123
+        S2SRegistrantOption:
+            MaxDialHoldDuration: 2m3s
+        GraphQueryOption:
+            GraphQueryClientOption:
+                MaxDialHoldDuration: 2m3s
+    InitServerOption:
+        ServerInfoOption:
+            ServerID: qwe
+            ServiceType: qwe
+            GraphQueryBroadCastAddr: qwe
+            AdditionalInfo: qwe
+        BoardCastAddr: qwe
+        S2CInfoOption:
+            ServerInfoOption:
+                ServerID: qwe
+                ServiceType: qwe
+                GraphQueryBroadCastAddr: qwe
+                AdditionalInfo: qwe
+            BoardCastAddr: qwe
+ListenerOption:
+    GogisnetListenerOption:
+        S2SListenNetwork: qwe
+        S2SListenAddr: qwe
+        S2CListenNetwork: qwe
+        S2CListenAddr: qwe
+        GraphQueryListenNetwork: qwe
+        GraphQueryListenAddr: qwe
+    PressureMeterListenAddr: qwe
