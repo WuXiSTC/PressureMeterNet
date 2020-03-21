@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 	"reflect"
+	"time"
 )
 
 func Generate(logger func(i ...interface{})) (opt Option, exit bool) {
@@ -62,6 +63,12 @@ func generateValue(Value reflect.Value, ValueName, ValueUsage string) {
 			case reflect.Float64:
 				pointer := Value.Addr().Interface().(*float64)
 				flag.Float64Var(pointer, ValueName, *pointer, ValueUsage)
+			case reflect.Bool:
+				pointer := Value.Addr().Interface().(*bool)
+				flag.BoolVar(pointer, ValueName, *pointer, ValueUsage)
+			case reflect.TypeOf(time.Duration(0)).Kind():
+				pointer := (*int64)(Value.Addr().Interface().(*time.Duration))
+				flag.Int64Var(pointer, ValueName, *pointer, ValueUsage)
 			}
 		})
 }

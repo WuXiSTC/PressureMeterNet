@@ -1,51 +1,70 @@
-ServerInfo:
-    ServerID: qwer
-    ServiceType: wqer
-    AdditionalInfo: qwer
+PressureMeterConfig:
+    ModelConfig:
+        DaemonConfig:
+            TaskAccN: 123
+            TaskQSize: 123
+        TaskConfig:
+            JmxDir: qwe
+            JtlDir: qwe
+            logDir: qwe
+    URLConfig:
+        NewTask: qwe
+        DeleteTask: qwe
+        GetConfig: qwe
+        GetResult: qwe
+        GetLog: qwe
+        StartTask: qwe
+        StopTask: qwe
+        GetState: qwe
 GogisnetOption:
-    InitServerOption:
-        ServerID: qwer
-        ServiceType: qwer
-        S2SAddress: qwer
-        S2CAddress: qwer
     ServiceOption:
         S2SRegistryOption:
-            MaxRegistrants: 1234
-            LogTimeoutControllerOption:
-                MinimumTime: 1234
-                MaximumTime: 1234
-                IncreaseFactor: 1234
+            BoardCastAddr: qwe
+            MaxRegistrants: 123
+            TimeoutControllerOption:
+                MinimumTime: 123s
+                MaximumTime: 123s
+                IncreaseFactor: 123
         S2SRegistrantOption:
-            RegistryN: 1234
+            RegistryN: 123
+            RetryNControllerOption:
+                K_RetryN: 123
+                B_RetryN: 123
+                K_SendTime: 123s
+                B_SendTime: 123s
+            CandidateListOption:
+                DefaultTimeout: 123s
+                DefaultRetryN: 123
+                Size: 123
+                MaxPingTimeout: 123s
         S2CRegistryOption:
-            MaxRegistrants: 1234
-            LogTimeoutControllerOption:
-                MinimumTime: 1234
-                MaximumTime: 1234
-                IncreaseFactor: 1234.1234
+            BoardCastAddr: qwe
+            MaxRegistrants: 123
+            TimeoutControllerOption:
+                MinimumTime: 123s
+                MaximumTime: 123s
+                IncreaseFactor: 123
     GRPCOption:
         S2SRegistryOption:
-            BufferSize: 1234
+            BufferSize: 123
         S2CRegistryOption:
-            BufferSize: 1234
+            BufferSize: 123
         S2SRegistrantOption:
-            MaxDialHoldDuration: 1234
-        CandidateListOption:
-            InitTimeLimit: 1234
-            InitRetryLimit: 1234
-            Size: 1234
-            PingTimeLimit: 1234
+            MaxDialHoldDuration: 123s
         GraphQueryOption:
             GraphQueryClientOption:
-                MaxDialHoldDuration: 1234
-    BoardCastOption:
-        S2SBoardCastAddr: qwer
-        S2CBoardCastAddr: qwer
-        GraphQueryBoardCastAddr: qwer
-ListenerOption:
-    s2slistennetwork: qwer
-    s2slistenaddr: qwer
-    s2clistennetwork: qwer
-    s2clistenaddr: qwer
-    graphquerylistennetwork: qwer
-    graphquerylistenaddr: qwer
+                MaxDialHoldDuration: 123s
+    InitServerOption:
+        ServerInfoOption:
+            ServerID: qwe
+            ServiceType: qwe
+            GraphQueryBroadCastAddr: qwe
+            AdditionalInfo: qwe
+        BoardCastAddr: qwe
+        S2CInfoOption:
+            ServerInfoOption:
+                ServerID: qwe
+                ServiceType: qwe
+                GraphQueryBroadCastAddr: qwe
+                AdditionalInfo: qwe
+            BoardCastAddr: qwe
