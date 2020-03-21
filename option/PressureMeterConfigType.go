@@ -60,16 +60,12 @@ func (o URLConfig) PutOption(op *PressureMeter.URLConfig) {
 		PMFieldName := PMConfigType.Field(i).Name
 		FieldValue := ConfigValue.FieldByName(PMFieldName)
 		PMFieldValueStr := FieldValue.Interface().(string)
-		PMFieldValueStr = re.ReplaceAllString(PMFieldValueStr, "")    //去除非法字符
-		PMFieldValueStr = rex.ReplaceAllString(PMFieldValueStr, "/")  //去除多余斜杠
-		PMFieldValueStr = rebeg.ReplaceAllString(PMFieldValueStr, "") //去除开头斜杠
-		PMFieldValueStr = reend.ReplaceAllString(PMFieldValueStr, "") //去除结尾斜杠
+		PMFieldValueStr = re.ReplaceAllString(PMFieldValueStr, "/") //去除多余斜杠
+		PMFieldValueStr = rex.ReplaceAllString(PMFieldValueStr, "") //去除非法字符、开头斜杠、结尾斜杠
 		PMFieldValue := strings.Split(PMFieldValueStr, "/")
 		PMConfigValue.Field(i).Set(reflect.ValueOf(PMFieldValue))
 	}
 }
 
-var re, _ = regexp.Compile("[^0-9a-zA-Z/]*")
-var rex, _ = regexp.Compile("/+")
-var rebeg, _ = regexp.Compile("^/*")
-var reend, _ = regexp.Compile("/*$")
+var re, _ = regexp.Compile("/+")
+var rex, _ = regexp.Compile("[^0-9a-zA-Z/]|^/|/$")
