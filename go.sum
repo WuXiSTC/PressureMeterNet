@@ -183,6 +183,10 @@ github.com/yindaheng98/gogisnet v0.0.0-20200321055918-0e8203b3835b h1:B/NmyqQVIH
 github.com/yindaheng98/gogisnet v0.0.0-20200321055918-0e8203b3835b/go.mod h1:+DjdOcV7dciBKiRQGGlWjwoIOjUgo4nh3ZsapZxnPSs=
 github.com/yindaheng98/gogisnet v0.0.0-20200321072203-ed998298fbb8 h1:jHUZSsj8r8osFZNQ6+tIl5E69cQmaHDpc/Ds1Lg9Ykg=
 github.com/yindaheng98/gogisnet v0.0.0-20200321072203-ed998298fbb8/go.mod h1:+DjdOcV7dciBKiRQGGlWjwoIOjUgo4nh3ZsapZxnPSs=
+github.com/yindaheng98/gogisnet v0.0.0-20200321084424-32388055186a h1:WgIhgco+Gv8S409BDNqQcyGvmaXlqM10xR/Tbhu+9C0=
+github.com/yindaheng98/gogisnet v0.0.0-20200321084424-32388055186a/go.mod h1:+DjdOcV7dciBKiRQGGlWjwoIOjUgo4nh3ZsapZxnPSs=
+github.com/yindaheng98/gogisnet v0.0.0-20200321084906-7b4384ee7ab0 h1:Bbzftjs6Wk7CiTGLv2+RkQZ4HADAI/SGxstiICb728c=
+github.com/yindaheng98/gogisnet v0.0.0-20200321084906-7b4384ee7ab0/go.mod h1:+DjdOcV7dciBKiRQGGlWjwoIOjUgo4nh3ZsapZxnPSs=
 github.com/yindaheng98/gogistry v0.0.0-20200319145125-3977e030114c h1:2I6vvWRGJ41/O/RtGfhr6zSyFi4TMZRJcqU0xaInnCQ=
 github.com/yindaheng98/gogistry v0.0.0-20200319145125-3977e030114c/go.mod h1:EBfIkBYo8ccDmv0QPEZhZe98CBNTZxyhqilpG25Jbp0=
 github.com/yindaheng98/gogistry v0.0.0-20200319145125-8a6fb0141a99 h1:LaBctKlVK9A8YBQZ5pNyCHGTSb8g4nmvI1BD9vLAVpA=

@@ -53,18 +53,23 @@ func defaultURLConfig() URLConfig {
 func (o URLConfig) PutOption(op *PressureMeter.URLConfig) {
 	ConfigValue := reflect.ValueOf(o)
 
-	PMConfigValue := reflect.ValueOf(*op)
+	PMConfigValue := reflect.ValueOf(op).Elem()
 	PMConfigType := reflect.TypeOf(*op)
 
 	for i := 0; i < PMConfigValue.NumField(); i++ {
 		PMFieldName := PMConfigType.Field(i).Name
 		FieldValue := ConfigValue.FieldByName(PMFieldName)
-		PMFieldValue := FieldValue.Interface().(string)
-		PMFieldValue = re.ReplaceAllString(PMFieldValue, "")   //去除非法字符
-		PMFieldValue = rex.ReplaceAllString(PMFieldValue, "/") //去除多余斜杠
-		PMConfigValue.Field(i).Set(reflect.ValueOf(&PMFieldValue))
+		PMFieldValueStr := FieldValue.Interface().(string)
+		PMFieldValueStr = re.ReplaceAllString(PMFieldValueStr, "")    //去除非法字符
+		PMFieldValueStr = rex.ReplaceAllString(PMFieldValueStr, "/")  //去除多余斜杠
+		PMFieldValueStr = rebeg.ReplaceAllString(PMFieldValueStr, "") //去除开头斜杠
+		PMFieldValueStr = reend.ReplaceAllString(PMFieldValueStr, "") //去除结尾斜杠
+		PMFieldValue := strings.Split(PMFieldValueStr, "/")
+		PMConfigValue.Field(i).Set(reflect.ValueOf(PMFieldValue))
 	}
 }
 
 var re, _ = regexp.Compile("[^0-9a-zA-Z/]*")
 var rex, _ = regexp.Compile("/+")
+var rebeg, _ = regexp.Compile("^/*")
+var reend, _ = regexp.Compile("/*$")

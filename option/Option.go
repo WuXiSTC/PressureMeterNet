@@ -6,13 +6,15 @@ import (
 )
 
 type Option struct {
-	PressureMeterConfig PressureMeterConfig `yaml:"PressureMeterConfig" usage:"Option for PressureMeter."`
-	GogisnetOption      server.Option       `yaml:"GogisnetOption" usage:"Option for gogisnet."`
-	ListenerOption      ListenerOption      `yaml:"ListenerOption" usage:"Option for port listen."`
+	ServerInfoOption    option.ServerInfoOption `yaml:"ServerInfoOption" usage:"Information about this server."`
+	PressureMeterConfig PressureMeterConfig     `yaml:"PressureMeterConfig" usage:"Option for PressureMeter."`
+	GogisnetOption      server.Option           `yaml:"GogisnetOption" usage:"Option for gogisnet."`
+	ListenerOption      ListenerOption          `yaml:"ListenerOption" usage:"Option for port listen."`
 }
 
 func DefaultOption() Option {
 	return Option{
+		ServerInfoOption:    option.DefaultServerInfoOption(),
 		PressureMeterConfig: DefaultPressureMeterConfig(),
 		GogisnetOption:      server.DefaultOption(),
 		ListenerOption:      defaultListenerOption(),
