@@ -10,6 +10,7 @@ type Option struct {
 	PressureMeterConfig PressureMeterConfig     `yaml:"PressureMeterConfig" usage:"Option for PressureMeter."`
 	GogisnetOption      server.Option           `yaml:"GogisnetOption" usage:"Option for gogisnet."`
 	ListenerOption      ListenerOption          `yaml:"ListenerOption" usage:"Option for port listen."`
+	HostsFileSyncOption HostsFileSyncOption     `yaml:"HostsFileSyncOption" usage:"Option for hosts file sync."`
 }
 
 func DefaultOption() Option {
@@ -18,6 +19,7 @@ func DefaultOption() Option {
 		PressureMeterConfig: DefaultPressureMeterConfig(),
 		GogisnetOption:      server.DefaultOption(),
 		ListenerOption:      defaultListenerOption(),
+		HostsFileSyncOption: defaultHostsFileSyncOption(),
 	}
 }
 
@@ -30,5 +32,17 @@ func defaultListenerOption() ListenerOption {
 	return ListenerOption{
 		GogisnetListenerOption:  option.DefaultListenerOption(),
 		PressureMeterListenAddr: ":80",
+	}
+}
+
+type HostsFileSyncOption struct {
+	HostsFilePath string `yaml:"HostsFilePath" usage:"Path to your hosts file."`
+	HostsFormat   string `yaml:"HostsFormat" usage:"Format of the host names."`
+}
+
+func defaultHostsFileSyncOption() HostsFileSyncOption {
+	return HostsFileSyncOption{
+		HostsFilePath: "/etc/hosts",
+		HostsFormat:   "jmeter%02d.test.wxstc.org.cn",
 	}
 }

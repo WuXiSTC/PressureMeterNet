@@ -3,9 +3,7 @@ package main
 import (
 	"PressureMeterMaster/option"
 	"context"
-	"gitee.com/WuXiSTC/PressureMeter"
 	"github.com/kataras/iris"
-	"github.com/yindaheng98/gogisnet/grpc"
 	"log"
 	"time"
 )
@@ -18,16 +16,17 @@ func main() {
 		return //就直接退出
 	}
 	//fmt.Println(opt)
-	server := grpc.NewServer(opt.ServerInfoOption, opt.GogisnetOption) //Gogisnet初始化
+	server, sync := ServerInit(opt) //Gogisnet初始化
+	sync.StartSync()                //启动同步
+	defer sync.StopSync()
 
 	ctxBackground := context.Background()
 	ctx, cancel := context.WithCancel(ctxBackground)
 	defer cancel()
-	PressureMeterConfig := PressureMeter.Config{}
-	opt.PressureMeterConfig.PutConfig(&PressureMeterConfig)
-	app := PressureMeter.Init(ctx, PressureMeterConfig) //PressureMeter服务器初始化
 
-	//TODO：获取Gogisnet全网连接图API
+	app := PressureMeterInit(ctx, opt.PressureMeterConfig) //PressureMeter服务器初始化
+
+	GraphAPIInit(server, app) //全网连接图API初始化
 
 	iris.RegisterOnInterrupt(func() {
 		timeout := 5 * time.Second
