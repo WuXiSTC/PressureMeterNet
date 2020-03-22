@@ -1,4 +1,4 @@
-package htable
+package hsync
 
 import (
 	"fmt"

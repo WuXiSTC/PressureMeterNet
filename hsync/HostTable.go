@@ -1,4 +1,4 @@
-package htable
+package hsync
 
 import (
 	"bufio"
@@ -8,7 +8,7 @@ import (
 	"sync"
 )
 
-//站点IP信息
+//存储站点IP信息
 type HostTable struct {
 	contents []string                       //此变量存储将要写入文件的内容，IP或注释
 	ips      map[string]map[string]struct{} //IP表，一个IP对应多个host
@@ -115,10 +115,10 @@ func (ht *HostTable) getAline(lineNum uint64) string {
 
 func (ht *HostTable) Read(path string) error {
 	file, err := os.Open(path)
-	defer func() { _ = file.Close() }()
 	if err != nil {
 		return err
 	}
+	defer func() { _ = file.Close() }()
 
 	scanner := bufio.NewScanner(file)
 	ht.mu.Lock()
@@ -138,10 +138,10 @@ func (ht *HostTable) Write(path string) error {
 	ht.mu.RLock()
 	defer ht.mu.RUnlock()
 	file, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, os.ModePerm) //打开文件流
-	defer func() { _ = file.Close() }()
 	if err != nil {
 		return err
 	}
+	defer func() { _ = file.Close() }()
 	unwrittenIP := make(map[string]map[string]struct{}, len(ht.ips)) //未写入的IP集合
 	for ip, hosts := range ht.ips {                                  //初始化未写入集合
 		unwrittenIP[ip] = hosts
