@@ -26,7 +26,7 @@ func main() {
 
 	app := PressureMeterInit(ctx, opt.PressureMeterConfig) //PressureMeter服务器初始化
 
-	GraphAPIInit(server, app) //全网连接图API初始化
+	GraphAPIInit(server, app, opt.GraphQueryURL) //全网连接图API初始化
 
 	iris.RegisterOnInterrupt(func() {
 		timeout := 5 * time.Second

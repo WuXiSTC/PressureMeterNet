@@ -11,6 +11,7 @@ type Option struct {
 	GogisnetOption      server.Option           `yaml:"GogisnetOption" usage:"Option for gogisnet."`
 	ListenerOption      ListenerOption          `yaml:"ListenerOption" usage:"Option for port listen."`
 	HostsFileSyncOption HostsFileSyncOption     `yaml:"HostsFileSyncOption" usage:"Option for hosts file sync."`
+	GraphQueryURL       string                  `yaml:"GraphQueryURL" usage:"URL for GraphQuery service."`
 }
 
 func DefaultOption() Option {
@@ -20,6 +21,7 @@ func DefaultOption() Option {
 		GogisnetOption:      server.DefaultOption(),
 		ListenerOption:      defaultListenerOption(),
 		HostsFileSyncOption: defaultHostsFileSyncOption(),
+		GraphQueryURL:       "Graph",
 	}
 }
 

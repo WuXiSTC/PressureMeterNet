@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"gitee.com/WuXiSTC/PressureMeter"
 	"github.com/kataras/iris"
+	irisContext "github.com/kataras/iris/context"
 	"github.com/yindaheng98/gogisnet/grpc"
 	pb "github.com/yindaheng98/gogisnet/grpc/protocol/protobuf"
 	"github.com/yindaheng98/gogisnet/grpc/server"
@@ -36,8 +37,8 @@ func PressureMeterInit(ctx context.Context, opt option.PressureMeterConfig) *iri
 	return PressureMeter.Init(ctx, PressureMeterConfig) //PressureMeter服务器初始化
 }
 
-func GraphAPIInit(s *server.Server, app *iris.Application) {
-
-	//TODO：获取Gogisnet全网连接图API
-
+func GraphAPIInit(s *server.Server, app *iris.Application, url string) {
+	app.Get(url, func(ctx irisContext.Context) {
+		_, _ = ctx.Write([]byte(s.GetGraph(context.Background()).String()))
+	})
 }

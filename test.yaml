@@ -1,7 +1,6 @@
 ServerInfoOption:
-    ServerID: SERVER-gGmBzrrVGDdgFHpknIp8JyYU1YbBpkqHtVD2hwSKDebdx55L4JXb3oadxLkaJJMO
+    ServerID: undefined
     ServiceType: undefined
-    GraphQueryBroadCastAddr: 192.168.56.1:4242
     AdditionalInfo: ""
 PressureMeterConfig:
     ModelConfig:
@@ -49,6 +48,8 @@ GogisnetOption:
                 MinimumTime: 1s
                 MaximumTime: 10s
                 IncreaseFactor: 2
+        GraphQueryOption:
+            BoardCastAddr: 192.168.56.1:4242
     GRPCOption:
         S2SRegistryOption:
             BufferSize: 100
@@ -61,16 +62,14 @@ GogisnetOption:
                 MaxDialHoldDuration: 1s
     InitServerOption:
         ServerInfoOption:
-            ServerID: SERVER-yAESrKecCKLLO4DlYQqv6ZyXpnfc2f1eB1HP2VhcXpZNVMnBDWLzD7vdZj39NHOf
+            ServerID: undefined
             ServiceType: undefined
-            GraphQueryBroadCastAddr: 192.168.56.1:4242
             AdditionalInfo: ""
         BoardCastAddr: undefined
         S2CInfoOption:
             ServerInfoOption:
-                ServerID: SERVER-mbikpBwTFK6XFdn1vsIx0S6toyNWJTkp8ymSAMHzc21FdxGrhmEyFfJtkgvV6tYf
+                ServerID: undefined
                 ServiceType: undefined
-                GraphQueryBroadCastAddr: 192.168.56.1:4242
                 AdditionalInfo: ""
             BoardCastAddr: undefined
 ListenerOption:
@@ -82,3 +81,7 @@ ListenerOption:
         GraphQueryListenNetwork: tcp
         GraphQueryListenAddr: localhost:4242
     PressureMeterListenAddr: :80
+HostsFileSyncOption:
+    HostsFilePath: /etc/hosts
+    HostsFormat: jmeter%02d.test.wxstc.org.cn
+GraphQuery: Graph

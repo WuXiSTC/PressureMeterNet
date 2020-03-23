@@ -189,6 +189,10 @@ github.com/yindaheng98/gogisnet v0.0.0-20200321084906-7b4384ee7ab0 h1:Bbzftjs6Wk
 github.com/yindaheng98/gogisnet v0.0.0-20200321084906-7b4384ee7ab0/go.mod h1:+DjdOcV7dciBKiRQGGlWjwoIOjUgo4nh3ZsapZxnPSs=
 github.com/yindaheng98/gogisnet v0.0.0-20200323074223-40f9866b2eef h1:8lrwdnqQS2TxRfbfAF9nD2Byj8JfVh2S7gkJsr97Y10=
 github.com/yindaheng98/gogisnet v0.0.0-20200323074223-40f9866b2eef/go.mod h1:+DjdOcV7dciBKiRQGGlWjwoIOjUgo4nh3ZsapZxnPSs=
+github.com/yindaheng98/gogisnet v0.0.0-20200323105008-3f6b7f8e0cc8 h1:1yb7Sv2HNQXMAI2mbeEHBekm51VtKEzW8O/I5ZM6Ie0=
+github.com/yindaheng98/gogisnet v0.0.0-20200323105008-3f6b7f8e0cc8/go.mod h1:+DjdOcV7dciBKiRQGGlWjwoIOjUgo4nh3ZsapZxnPSs=
+github.com/yindaheng98/gogisnet v0.0.0-20200323121725-9bd4efb68972 h1:76X7qsCHFnXDIrxrguawdBzj0uV8T2azo/A6T9j8Q7k=
+github.com/yindaheng98/gogisnet v0.0.0-20200323121725-9bd4efb68972/go.mod h1:+DjdOcV7dciBKiRQGGlWjwoIOjUgo4nh3ZsapZxnPSs=
 github.com/yindaheng98/gogistry v0.0.0-20200319145125-3977e030114c h1:2I6vvWRGJ41/O/RtGfhr6zSyFi4TMZRJcqU0xaInnCQ=
 github.com/yindaheng98/gogistry v0.0.0-20200319145125-3977e030114c/go.mod h1:EBfIkBYo8ccDmv0QPEZhZe98CBNTZxyhqilpG25Jbp0=
 github.com/yindaheng98/gogistry v0.0.0-20200319145125-8a6fb0141a99 h1:LaBctKlVK9A8YBQZ5pNyCHGTSb8g4nmvI1BD9vLAVpA=
@@ -269,6 +273,8 @@ google.golang.org/genproto v0.0.0-20190819201941-24fa4b261c55 h1:gSJIx1SDwno+2El
 google.golang.org/genproto v0.0.0-20190819201941-24fa4b261c55/go.mod h1:DMBHOl98Agz4BDEuKkezgsaosCRResVns1a3J2ZsMNc=
 google.golang.org/genproto v0.0.0-20200319113533-08878b785e9c h1:5aI3/f/3eCZps9xwoEnmgfDJDhMbnJpfqeGpjVNgVEI=
 google.golang.org/genproto v0.0.0-20200319113533-08878b785e9c/go.mod h1:55QSHmfGQM9UVYDPBsyGGes0y52j32PQ3BqQfXhyH3c=
+google.golang.org/genproto v0.0.0-20200323114720-3f67cca34472 h1:XRuIAeTRoXziYGYTVer+YGxVXQBiOhZ8+SpNELP73oQ=
+google.golang.org/genproto v0.0.0-20200323114720-3f67cca34472/go.mod h1:55QSHmfGQM9UVYDPBsyGGes0y52j32PQ3BqQfXhyH3c=
 google.golang.org/grpc v1.19.0/go.mod h1:mqu4LbDTu4XGKhr4mRzUsmM4RtVoemTSY81AxZiDr8c=
 google.golang.org/grpc v1.23.0/go.mod h1:Y5yQAOtifL1yxbo5wqy6BxZv8vAUGQwXBOALyacEbxg=
 google.golang.org/grpc v1.25.1/go.mod h1:c3i+UQWmh7LiEpx4sFZnkU36qjEYZ0imhYfXVyQciAY=
