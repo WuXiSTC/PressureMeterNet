@@ -1,10 +1,15 @@
-# PressureMeterMaster
+# PressureMeterNet
 
 #### Description
-Jmeter 测试主机，基于 PressureMeter 和 github.com/yindaheng98/gogisnet
+一个自组织的分布式测试网络，基于Jmeter、PressureMeter 和 github.com/yindaheng98/gogisnet。
 
 #### Software Architecture
-Software architecture description
+
+本系统是由多个主机节点和多个从机节点自组织形成的网络。每个节点都是一个Docker容器。
+
+从机节点容器中运行着一个Jmeter的从机进程和一个gogisnet客户端，该gogisnet客户端负责将自身IP地址发往一个主机，从而
+
+![系统结构](_/结构.png)
 
 #### Installation
 
