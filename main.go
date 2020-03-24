@@ -16,9 +16,7 @@ func main() {
 		return //就直接退出
 	}
 	//fmt.Println(opt)
-	server, sync := ServerInit(opt) //Gogisnet初始化
-	sync.StartSync()                //启动同步
-	defer sync.StopSync()
+	server := ServerInit(opt) //Gogisnet初始化
 
 	ctxBackground := context.Background()
 	ctx, cancel := context.WithCancel(ctxBackground)

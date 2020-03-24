@@ -1,10 +1,8 @@
 package main
 
 import (
-	"PressureMeterMaster/hsync"
 	"PressureMeterMaster/option"
 	"context"
-	"fmt"
 	"gitee.com/WuXiSTC/PressureMeter"
 	"github.com/kataras/iris"
 	irisContext "github.com/kataras/iris/context"
@@ -12,23 +10,41 @@ import (
 	pb "github.com/yindaheng98/gogisnet/grpc/protocol/protobuf"
 	"github.com/yindaheng98/gogisnet/grpc/server"
 	"github.com/yindaheng98/gogisnet/message"
+	"net"
+	"sync"
 )
 
-func ServerInit(opt option.Option) (*server.Server, *hsync.ClientIPSync) {
+func ServerInit(opt option.Option) *server.Server {
 	s := grpc.NewServer(opt.ServerInfoOption, opt.GogisnetOption) //Gogisnet初始化
-	sync := hsync.NewClientIPSync(opt.HostsFileSyncOption.HostsFilePath,
-		func(u uint64) string {
-			return fmt.Sprintf(opt.HostsFileSyncOption.HostsFormat, u)
-		})
+	AddrSet := map[string]net.TCPAddr{}
+	AddrSetMu := new(sync.Mutex)
+	AddrList := func() []net.TCPAddr {
+		addrList := make([]net.TCPAddr, len(AddrSet))
+		i := 0
+		for _, Addr := range AddrSet {
+			addrList[i] = Addr
+		}
+		return addrList
+	}
 	s.Events.ClientNewConnection.AddHandler(func(info message.ClientInfo) {
-		sync.AddClient(info.GetClientID(), string(info.(*pb.ClientInfo).AdditionalInfo))
+		if Addr, err := net.ResolveTCPAddr("", string(info.(*pb.ClientInfo).AdditionalInfo)); err == nil {
+			AddrSetMu.Lock()
+			defer AddrSetMu.Unlock()
+			AddrSet[Addr.String()] = *Addr
+			*opt.PressureMeterConfig.ModelConfig.TaskConfig.IPList = AddrList() //修改地址表
+		}
 	})
 	s.Events.ClientNewConnection.Enable()
 	s.Events.ClientDisconnection.AddHandler(func(info message.ClientInfo) {
-		sync.DelClient(info.GetClientID())
+		if Addr, err := net.ResolveTCPAddr("", string(info.(*pb.ClientInfo).AdditionalInfo)); err == nil {
+			AddrSetMu.Lock()
+			defer AddrSetMu.Unlock()
+			delete(AddrSet, Addr.String())
+			*opt.PressureMeterConfig.ModelConfig.TaskConfig.IPList = AddrList() //修改地址表
+		}
 	})
 	s.Events.ClientDisconnection.Enable()
-	return s, sync
+	return s
 }
 
 func PressureMeterInit(ctx context.Context, opt option.PressureMeterConfig) *iris.Application {
