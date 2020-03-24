@@ -14,6 +14,21 @@ import (
 	"sync"
 )
 
+func ResolveAddr(addr string) (*net.TCPAddr, error) {
+	if Addr, err := net.ResolveTCPAddr("", addr); err == nil {
+		return Addr, nil
+	}
+	if IP, err := net.ResolveIPAddr("", addr); err == nil {
+		return &net.TCPAddr{
+			IP:   IP.IP,
+			Port: 1099,
+			Zone: IP.Zone,
+		}, nil
+	} else {
+		return nil, err
+	}
+}
+
 func ServerInit(opt option.Option) *server.Server {
 	s := grpc.NewServer(opt.ServerInfoOption, opt.GogisnetOption) //Gogisnet初始化
 	AddrSet := map[string]net.TCPAddr{}
@@ -27,7 +42,7 @@ func ServerInit(opt option.Option) *server.Server {
 		return addrList
 	}
 	s.Events.ClientNewConnection.AddHandler(func(info message.ClientInfo) {
-		if Addr, err := net.ResolveTCPAddr("", string(info.(*pb.ClientInfo).AdditionalInfo)); err == nil {
+		if Addr, err := ResolveAddr(string(info.(*pb.ClientInfo).AdditionalInfo)); err == nil {
 			AddrSetMu.Lock()
 			defer AddrSetMu.Unlock()
 			AddrSet[Addr.String()] = *Addr
@@ -36,7 +51,7 @@ func ServerInit(opt option.Option) *server.Server {
 	})
 	s.Events.ClientNewConnection.Enable()
 	s.Events.ClientDisconnection.AddHandler(func(info message.ClientInfo) {
-		if Addr, err := net.ResolveTCPAddr("", string(info.(*pb.ClientInfo).AdditionalInfo)); err == nil {
+		if Addr, err := ResolveAddr(string(info.(*pb.ClientInfo).AdditionalInfo)); err == nil {
 			AddrSetMu.Lock()
 			defer AddrSetMu.Unlock()
 			delete(AddrSet, Addr.String())
