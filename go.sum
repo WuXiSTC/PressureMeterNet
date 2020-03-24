@@ -7,6 +7,8 @@ gitee.com/WuXiSTC/PressureMeter v0.0.0-20200324100456-074d33575dfd h1:dlpHuXNqSU
 gitee.com/WuXiSTC/PressureMeter v0.0.0-20200324100456-074d33575dfd/go.mod h1:D/kSJUpBGqadRNUB8pGRDlgj1o0y2cN4aCxzXKq1QQM=
 gitee.com/WuXiSTC/PressureMeter v0.0.0-20200324103957-d2966fe3aa9b h1:BAG84XX9GFM+I81uoGfbUl579gxqDIEmkZBUCfJvPi8=
 gitee.com/WuXiSTC/PressureMeter v0.0.0-20200324103957-d2966fe3aa9b/go.mod h1:D/kSJUpBGqadRNUB8pGRDlgj1o0y2cN4aCxzXKq1QQM=
+gitee.com/WuXiSTC/PressureMeter v0.0.0-20200324123415-25d7cd5700d8 h1:EDtrpEPqIJ0Jnk9M65LqtfLEywdirGjSQzHCAzj3kTc=
+gitee.com/WuXiSTC/PressureMeter v0.0.0-20200324123415-25d7cd5700d8/go.mod h1:D/kSJUpBGqadRNUB8pGRDlgj1o0y2cN4aCxzXKq1QQM=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/Joker/hpp v0.0.0-20180418125244-6893e659854a/go.mod h1:MzD2WMdSxvbHw5fM/OXOFily/lipJWRc9C1px0Mt0ZE=
