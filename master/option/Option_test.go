@@ -3,7 +3,6 @@ package option
 import (
 	"fmt"
 	"gopkg.in/yaml.v3"
-	"reflect"
 	"testing"
 )
 
@@ -16,10 +15,6 @@ func YAMLTest(t *testing.T, i *Option) {
 	}
 	if err = yaml.Unmarshal(is, i); err != nil {
 		t.Log(err)
-	} else {
-		printValue(reflect.ValueOf(i), "YAMLTest", func(i ...interface{}) {
-			fmt.Println(i...)
-		})
 	}
 }
 
