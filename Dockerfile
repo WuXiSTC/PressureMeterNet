@@ -13,12 +13,12 @@ RUN git config --global url."git@gitee.com:".insteadOf "https://gitee.com/" && \
 FROM egaillardon/jmeter
 STOPSIGNAL SIGINT
 
-COPY --from=0 /PressureMeterNet-Master /jmeter
-ADD Config.yaml /jmeter
+RUN mkdir /PressureMeterNet && \
+    mkdir /PressureMeterNet/Data && \
+    chmod a+rw /PressureMeterNet/Data
+COPY --from=0 /PressureMeterNet-Master /PressureMeterNet
+WORKDIR /PressureMeterNet
 
 EXPOSE 8080
-WORKDIR /jmeter
-RUN mkdir Data
-VOLUME [ "/jmeter/Data" ]
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["/jmeter/PressureMeterNet-Master"]
+VOLUME [ "/PressureMeterNet/Data" ]
+CMD ["/PressureMeterNet/PressureMeterNet-Master"]

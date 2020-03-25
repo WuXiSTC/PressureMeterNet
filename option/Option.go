@@ -31,6 +31,6 @@ type ListenerOption struct {
 func defaultListenerOption() ListenerOption {
 	return ListenerOption{
 		GogisnetListenerOption:  option.DefaultListenerOption(),
-		PressureMeterListenAddr: ":80",
+		PressureMeterListenAddr: "0.0.0.0:8080",
 	}
 }
