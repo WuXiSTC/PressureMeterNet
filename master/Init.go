@@ -1,7 +1,7 @@
 package main
 
 import (
-	"PressureMeterMaster/option"
+	"PressureMeterNet/master/option"
 	"context"
 	"gitee.com/WuXiSTC/PressureMeter"
 	"github.com/kataras/iris"

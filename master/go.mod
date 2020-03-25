@@ -1,4 +1,4 @@
-module PressureMeterMaster
+module PressureMeterNet/master
 
 go 1.13
 

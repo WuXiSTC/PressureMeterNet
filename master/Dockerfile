@@ -8,7 +8,7 @@ RUN git config --global url."git@gitee.com:".insteadOf "https://gitee.com/" && \
     chmod 0600 /root/.ssh/id_rsa && \
     echo "StrictHostKeyChecking no " > /root/.ssh/config && \
     go get -d -v ./... && \
-    go build -v -o /PressureMeterNet-Master
+    go build main -v -o /PressureMeterNet-Master
 
 FROM egaillardon/jmeter
 STOPSIGNAL SIGINT
