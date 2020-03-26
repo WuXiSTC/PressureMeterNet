@@ -3,7 +3,7 @@ module PressureMeterNet/master
 go 1.13
 
 require (
-	gitee.com/WuXiSTC/PressureMeter v0.0.0-20200326085749-0fb60e9b3678
+	gitee.com/WuXiSTC/PressureMeter v0.0.0-20200326125957-9618940c1cf7
 	github.com/kataras/iris v11.1.1+incompatible
 	github.com/yindaheng98/cipg v0.0.0-20200325151135-b69ebc867145
 	github.com/yindaheng98/gogisnet v0.0.0-20200325072002-25db2ac753c7

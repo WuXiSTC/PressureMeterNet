@@ -1,5 +1,4 @@
 FROM yindaheng98/go-git
-WORKDIR /app
 COPY . .
 COPY ./id_rsa /root/.ssh/id_rsa
 COPY ./id_rsa.pub /root/.ssh/id_rsa.pub
@@ -13,14 +12,12 @@ RUN git config --global url."git@gitee.com:".insteadOf "https://gitee.com/" && \
 FROM egaillardon/jmeter
 STOPSIGNAL SIGINT
 
-RUN mkdir /PressureMeterNet && \
-    mkdir /PressureMeterNet/Data && \
-    chmod a+rw /PressureMeterNet/Data
-COPY --from=0 /PressureMeterNet-Master /PressureMeterNet
+RUN mkdir /jmeter/Data && chmod a+rw /jmeter/Data
+COPY --from=0 /PressureMeterNet-Master /jmeter
 COPY entrypoint.sh /usr/local/bin/
-WORKDIR /PressureMeterNet
+WORKDIR /jmeter
 
 EXPOSE 8080
-VOLUME [ "/PressureMeterNet/Data" ]
+VOLUME [ "/jmeter/Data" ]
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["/PressureMeterNet/PressureMeterNet-Master", "-h"]
+CMD ["/jmeter/PressureMeterNet-Master", "-h"]
