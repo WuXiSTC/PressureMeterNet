@@ -33,6 +33,7 @@ type URLConfig struct {
 	StartTask  string `yaml:"StartTask" usage:"URL for starting a task."`
 	StopTask   string `yaml:"StopTask" usage:"URL for stopping a task."`
 	GetState   string `yaml:"GetState" usage:"URL for getting the running state of a task."`
+	GraphQuery string `yaml:"GraphQueryURL" usage:"URL for GraphQuery service."`
 }
 
 func defaultURLConfig() URLConfig {
@@ -48,6 +49,7 @@ func defaultURLConfig() URLConfig {
 		PMFieldName := PMConfigType.Field(i).Name
 		ConfigValue.FieldByName(PMFieldName).Set(reflect.ValueOf(PMFieldValue))
 	}
+	URLConfig.GraphQuery = "GraphQuery"
 	return URLConfig
 }
 func (o URLConfig) PutOption(op *PressureMeter.URLConfig) {

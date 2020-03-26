@@ -32,7 +32,13 @@ func ResolveAddr(addr string) (*net.TCPAddr, error) {
 }
 
 func ServerInit(opt option.Option) *server.Server {
+	opt.ServerInfoOption.AdditionalInfo = opt.AccessAddr
 	s := grpc.NewServer(opt.ServerInfoOption, opt.GogisnetOption) //Gogisnet初始化
+	EventInit(s, opt)
+	return s
+}
+
+func EventInit(s *server.Server, opt option.Option) {
 	AddrSet := map[string]net.TCPAddr{}
 	AddrSetMu := new(sync.Mutex)
 	AddrList := func() []net.TCPAddr {
@@ -68,7 +74,6 @@ func ServerInit(opt option.Option) *server.Server {
 	s.Events.S2CRegistryEvent.UpdateConnection.AddHandler(func(info message.C2SInfo) { UpdateClient(info.ClientInfo) })
 	s.Events.ClientDisconnection.AddHandler(DeleteClient)
 	s.Events.ClientDisconnection.Enable()
-	return s
 }
 
 func PressureMeterInit(ctx context.Context, opt option.PressureMeterConfig) *iris.Application {
@@ -77,8 +82,8 @@ func PressureMeterInit(ctx context.Context, opt option.PressureMeterConfig) *iri
 	return PressureMeter.Init(ctx, PressureMeterConfig) //PressureMeter服务器初始化
 }
 
-func GraphAPIInit(s *server.Server, app *iris.Application, url string) {
-	app.Get(url, func(ctx irisContext.Context) {
+func GraphAPIInit(s *server.Server, app *iris.Application, opt option.Option) {
+	app.Get(opt.PressureMeterConfig.URLConfig.GraphQuery, func(ctx irisContext.Context) {
 		_, _ = ctx.Write([]byte(s.GetGraph(context.Background()).String()))
 	})
 }

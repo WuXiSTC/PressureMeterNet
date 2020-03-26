@@ -10,7 +10,7 @@ type Option struct {
 	PressureMeterConfig PressureMeterConfig     `yaml:"PressureMeterConfig" usage:"Option for PressureMeter."`
 	GogisnetOption      server.Option           `yaml:"GogisnetOption" usage:"Option for gogisnet."`
 	ListenerOption      ListenerOption          `yaml:"ListenerOption" usage:"Option for port listen."`
-	GraphQueryURL       string                  `yaml:"GraphQueryURL" usage:"URL for GraphQuery service."`
+	AccessAddr          string                  `yaml:"AccessAddr" usage:"The addr for the accessing from outside network."`
 }
 
 func DefaultOption() Option {
@@ -19,7 +19,7 @@ func DefaultOption() Option {
 		PressureMeterConfig: DefaultPressureMeterConfig(),
 		GogisnetOption:      server.DefaultOption(),
 		ListenerOption:      defaultListenerOption(),
-		GraphQueryURL:       "Graph",
+		AccessAddr:          option.GetIP() + ":8080",
 	}
 }
 
