@@ -3,6 +3,7 @@ package main
 import (
 	"PressureMeterNet/master/option"
 	"context"
+	"fmt"
 	"github.com/kataras/iris"
 	"log"
 	"time"
@@ -10,7 +11,7 @@ import (
 
 func main() {
 	opt, exit := option.Generate(func(i ...interface{}) {
-		log.Println(i...)
+		fmt.Println(i...)
 	})
 	if exit { //如果要退出
 		return //就直接退出
@@ -45,4 +46,5 @@ func main() {
 		log.Println(err)
 		cancel()
 	}
+	time.Sleep(3e9)
 }

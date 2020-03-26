@@ -81,7 +81,4 @@ ListenerOption:
         GraphQueryListenNetwork: tcp
         GraphQueryListenAddr: localhost:4242
     PressureMeterListenAddr: :80
-HostsFileSyncOption:
-    HostsFilePath: /etc/hosts
-    HostsFormat: jmeter%02d.test.wxstc.org.cn
-GraphQuery: Graph
+GraphQueryURL: Graph

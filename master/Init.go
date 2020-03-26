@@ -3,6 +3,7 @@ package main
 import (
 	"PressureMeterNet/master/option"
 	"context"
+	"fmt"
 	"gitee.com/WuXiSTC/PressureMeter"
 	"github.com/kataras/iris"
 	irisContext "github.com/kataras/iris/context"
@@ -10,6 +11,7 @@ import (
 	pb "github.com/yindaheng98/gogisnet/grpc/protocol/protobuf"
 	"github.com/yindaheng98/gogisnet/grpc/server"
 	"github.com/yindaheng98/gogisnet/message"
+	"log"
 	"net"
 	"sync"
 )
@@ -41,23 +43,30 @@ func ServerInit(opt option.Option) *server.Server {
 		}
 		return addrList
 	}
-	s.Events.ClientNewConnection.AddHandler(func(info message.ClientInfo) {
-		if Addr, err := ResolveAddr(string(info.(*pb.ClientInfo).AdditionalInfo)); err == nil {
-			AddrSetMu.Lock()
-			defer AddrSetMu.Unlock()
-			AddrSet[Addr.String()] = *Addr
-			*opt.PressureMeterConfig.ModelConfig.TaskConfig.IPList = AddrList() //修改地址表
+	UpdateClient := func(info message.ClientInfo) {
+		AddrSetMu.Lock()
+		defer AddrSetMu.Unlock()
+		addr := string(info.(*pb.ClientInfo).AdditionalInfo)
+		if Addr, err := ResolveAddr(addr); err == nil {
+			AddrSet[info.GetClientID()] = *Addr
+			log.Println(fmt.Sprintf("Client '%s' updated: %s", info.GetClientID(), Addr.String()))
+		} else {
+			delete(AddrSet, info.GetClientID())
+			log.Println(fmt.Sprintf("Client '%s' update failed: %s\n", info.GetClientID(), addr), err)
 		}
-	})
+		*opt.PressureMeterConfig.ModelConfig.TaskConfig.IPList = AddrList() //修改地址表
+	}
+	DeleteClient := func(info message.ClientInfo) {
+		AddrSetMu.Lock()
+		defer AddrSetMu.Unlock()
+		delete(AddrSet, info.GetClientID())
+		log.Println(fmt.Sprintf("Client '%s' deleted", info.GetClientID()))
+		*opt.PressureMeterConfig.ModelConfig.TaskConfig.IPList = AddrList() //修改地址表
+	}
+	s.Events.ClientNewConnection.AddHandler(UpdateClient)
 	s.Events.ClientNewConnection.Enable()
-	s.Events.ClientDisconnection.AddHandler(func(info message.ClientInfo) {
-		if Addr, err := ResolveAddr(string(info.(*pb.ClientInfo).AdditionalInfo)); err == nil {
-			AddrSetMu.Lock()
-			defer AddrSetMu.Unlock()
-			delete(AddrSet, Addr.String())
-			*opt.PressureMeterConfig.ModelConfig.TaskConfig.IPList = AddrList() //修改地址表
-		}
-	})
+	s.Events.S2CRegistryEvent.UpdateConnection.AddHandler(func(info message.C2SInfo) { UpdateClient(info.ClientInfo) })
+	s.Events.ClientDisconnection.AddHandler(DeleteClient)
 	s.Events.ClientDisconnection.Enable()
 	return s
 }

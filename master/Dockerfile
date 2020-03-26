@@ -8,7 +8,7 @@ RUN git config --global url."git@gitee.com:".insteadOf "https://gitee.com/" && \
     chmod 0600 /root/.ssh/id_rsa && \
     echo "StrictHostKeyChecking no " > /root/.ssh/config && \
     go get -d -v ./... && \
-    go build main -v -o /PressureMeterNet-Master
+    go build -v -o /PressureMeterNet-Master
 
 FROM egaillardon/jmeter
 STOPSIGNAL SIGINT
@@ -17,8 +17,10 @@ RUN mkdir /PressureMeterNet && \
     mkdir /PressureMeterNet/Data && \
     chmod a+rw /PressureMeterNet/Data
 COPY --from=0 /PressureMeterNet-Master /PressureMeterNet
+COPY entrypoint.sh /usr/local/bin/
 WORKDIR /PressureMeterNet
 
 EXPOSE 8080
 VOLUME [ "/PressureMeterNet/Data" ]
-CMD ["/PressureMeterNet/PressureMeterNet-Master"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["/PressureMeterNet/PressureMeterNet-Master", "-h"]

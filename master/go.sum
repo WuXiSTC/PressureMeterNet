@@ -1,6 +1,8 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 gitee.com/WuXiSTC/PressureMeter v0.0.0-20200324123415-25d7cd5700d8 h1:EDtrpEPqIJ0Jnk9M65LqtfLEywdirGjSQzHCAzj3kTc=
 gitee.com/WuXiSTC/PressureMeter v0.0.0-20200324123415-25d7cd5700d8/go.mod h1:D/kSJUpBGqadRNUB8pGRDlgj1o0y2cN4aCxzXKq1QQM=
+gitee.com/WuXiSTC/PressureMeter v0.0.0-20200326085749-0fb60e9b3678 h1:OOaxNZfHk6KJwJM9fhXiPVd79OIeKf0AOzoKAS9IVWw=
+gitee.com/WuXiSTC/PressureMeter v0.0.0-20200326085749-0fb60e9b3678/go.mod h1:D/kSJUpBGqadRNUB8pGRDlgj1o0y2cN4aCxzXKq1QQM=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/Joker/hpp v0.0.0-20180418125244-6893e659854a/go.mod h1:MzD2WMdSxvbHw5fM/OXOFily/lipJWRc9C1px0Mt0ZE=

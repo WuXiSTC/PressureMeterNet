@@ -13,9 +13,19 @@
 
 #### Installation
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+##### 搭建主机节点
+
+```sh
+docker build -t pressure_meter_master master
+docker run -p 80:8080 pressure_meter_master -Option.ServerInfoOption.ServerID=SERVER0 -Option.ServerInfoOption.ServiceType=TYPE0
+```
+
+##### 搭建从机节点
+
+```sh
+docker build -t pressure_meter_slave slave
+docker run pressure_meter_slave -Option.ClientInfoOption.ClientID=CLIENT0 -Option.ClientInfoOption.ServiceType=TYPE0 -Option.GogisnetOption.InitServerOption.BoardCastAddr=172.17.0.2
+```
 
 #### Instructions
 
