@@ -25,15 +25,16 @@ func (o PressureMeterConfig) PutConfig(op *PressureMeter.Config) {
 }
 
 type URLConfig struct {
-	NewTask    string `yaml:"NewTask" usage:"URL for creating new task."`
-	DeleteTask string `yaml:"DeleteTask" usage:"URL for deleting task."`
-	GetConfig  string `yaml:"GetConfig" usage:"URL for getting jmx file of the task."`
-	GetResult  string `yaml:"GetResult" usage:"URL for getting jtl file of the task."`
-	GetLog     string `yaml:"GetLog" usage:"URL of for getting log file of the task."`
-	StartTask  string `yaml:"StartTask" usage:"URL for starting a task."`
-	StopTask   string `yaml:"StopTask" usage:"URL for stopping a task."`
-	GetState   string `yaml:"GetState" usage:"URL for getting the running state of a task."`
-	GraphQuery string `yaml:"GraphQueryURL" usage:"URL for GraphQuery service."`
+	NewTask        string `yaml:"NewTask" usage:"URL for creating new task."`
+	DeleteTask     string `yaml:"DeleteTask" usage:"URL for deleting task."`
+	GetConfig      string `yaml:"GetConfig" usage:"URL for getting jmx file of the task."`
+	GetResult      string `yaml:"GetResult" usage:"URL for getting jtl file of the task."`
+	GetLog         string `yaml:"GetLog" usage:"URL of for getting log file of the task."`
+	StartTask      string `yaml:"StartTask" usage:"URL for starting a task."`
+	StopTask       string `yaml:"StopTask" usage:"URL for stopping a task."`
+	GetState       string `yaml:"GetState" usage:"URL for getting the running state of a task."`
+	ExpectDuration string `yaml:"ExpectDuration" usage:"URL for expected duration for finish all tasks."`
+	GraphQuery     string `yaml:"GraphQueryURL" usage:"URL for GraphQuery service."`
 }
 
 func defaultURLConfig() URLConfig {
