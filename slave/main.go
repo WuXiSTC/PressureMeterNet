@@ -16,8 +16,8 @@ func main() {
 		return //就直接退出
 	}
 	//fmt.Println(opt)
-	client := ClientInit(opt)
-	app := PressureMeterInit(opt.PressureMeterConfig)
+	mpc := PressureMeterInit(opt.PressureMeterConfig)
+	client := ClientInit(opt, mpc)
 
 	ctxBackground := context.Background()
 	ctx, cancel := context.WithCancel(ctxBackground)
@@ -27,16 +27,10 @@ func main() {
 		client.Run(ctx)
 		errChan <- nil
 	}()
-	go func() {
-		err := app.Start()
-		if err != nil {
-			errChan <- err
-		}
-		errChan <- app.Wait()
-	}()
 	if err := <-errChan; err != nil {
 		log.Println(err)
 		cancel()
 	}
+	mpc.StopAll()
 	time.Sleep(3e9)
 }

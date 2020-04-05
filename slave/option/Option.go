@@ -20,13 +20,13 @@ func DefaultOption() Option {
 }
 
 type PressureMeterConfig struct {
-	BoardCastAddr string
-	ListenPort    int
+	BoardCastAddr  string
+	BaseListenPort uint16
 }
 
 func defaultPressureMeterConfig() PressureMeterConfig {
 	return PressureMeterConfig{
-		BoardCastAddr: option.GetIP() + ":1099",
-		ListenPort:    1099,
+		BoardCastAddr:  option.GetIP(),
+		BaseListenPort: 1099,
 	}
 }
