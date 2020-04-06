@@ -1,6 +1,8 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 gitee.com/WuXiSTC/PressureMeter v0.0.0-20200406132923-4ab0e9810968 h1:jgZD3hlVbOkSCc9siDsmCtN34xaenobd8kVb3V/Kv3k=
 gitee.com/WuXiSTC/PressureMeter v0.0.0-20200406132923-4ab0e9810968/go.mod h1:TIwNHoOTf9mOdNzP6S2k/ZRA1QzLuL7tOAdF8DH9hRY=
+gitee.com/WuXiSTC/PressureMeter v0.0.0-20200406135514-712b8e80b7e2 h1:MA9D+RyB8oUCnyJagbq+E9k2jhh/thZBPm7F8vwHGEA=
+gitee.com/WuXiSTC/PressureMeter v0.0.0-20200406135514-712b8e80b7e2/go.mod h1:TIwNHoOTf9mOdNzP6S2k/ZRA1QzLuL7tOAdF8DH9hRY=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/Joker/hpp v0.0.0-20180418125244-6893e659854a/go.mod h1:MzD2WMdSxvbHw5fM/OXOFily/lipJWRc9C1px0Mt0ZE=
