@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"gitee.com/WuXiSTC/PressureMeter/Model/Daemon"
+	"gitee.com/WuXiSTC/PressureMeter/Model/Task"
 	pb "github.com/yindaheng98/gogisnet/grpc/protocol/protobuf"
 	"github.com/yindaheng98/gogisnet/grpc/server"
 	"github.com/yindaheng98/gogisnet/message"
@@ -72,7 +72,7 @@ func EventInit(s *server.Server, TaskAccN uint16) {
 			handleErr(err, info) //IP出错
 		} else if len(Addrs) < int(TaskAccN) { //长度不够
 			handleErr(errors.New("len(Addrs) < int(TaskAccN),长度不足"), info)
-		} else if err := Daemon.SetIPList(GetAddrList()); err != nil {
+		} else if err := Task.SetIPList(GetAddrList()); err != nil {
 			handleErr(err, info) //修改地址表出错
 		} else { //成功
 			AddrSetMu.Lock()
@@ -86,7 +86,7 @@ func EventInit(s *server.Server, TaskAccN uint16) {
 		defer AddrSetMu.Unlock()
 		delete(AddrSet, info.GetClientID())
 		log.Println(fmt.Sprintf("Client '%s' deleted", info.GetClientID()))
-		if err := Daemon.SetIPList(GetAddrList()); err != nil {
+		if err := Task.SetIPList(GetAddrList()); err != nil {
 			handleErr(err, info) //修改地址表出错
 		}
 	}
