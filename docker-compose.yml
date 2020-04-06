@@ -1,0 +1,64 @@
+version: "3"
+services:
+  master1:
+    build: ./master
+    command: "-Option.ServerInfoOption.ServerID=SERVER1 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=4"
+    ports: 
+      - 80:8080
+  slave1:
+    build: ./slave
+    depends_on:
+      - master1
+    command: "-Option.ClientInfoOption.ClientID=CLIENT1 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+  slave2:
+    build: ./slave
+    depends_on:
+      - master1
+    command: "-Option.ClientInfoOption.ClientID=CLIENT2 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+  slave3:
+    build: ./slave
+    depends_on:
+      - master1
+    command: "-Option.ClientInfoOption.ClientID=CLIENT3 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+  slave4:
+    build: ./slave
+    depends_on:
+      - master1
+    command: "-Option.ClientInfoOption.ClientID=CLIENT4 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+
+  master2:
+    build: ./master
+    command: "-Option.ServerInfoOption.ServerID=SERVER2 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=2 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4241"
+    depends_on:
+      - master1
+    ports: 
+      - 81:8080
+  slave5:
+    build: ./slave
+    depends_on:
+      - master2
+    command: "-Option.ClientInfoOption.ClientID=CLIENT5 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+  slave6:
+    build: ./slave
+    depends_on:
+      - master2
+    command: "-Option.ClientInfoOption.ClientID=CLIENT6 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+
+  master3:
+    build: ./master
+    command: "-Option.ServerInfoOption.ServerID=SERVER3 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=1 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4241"
+    depends_on:
+      - master2
+    ports: 
+      - 82:8080
+  slave7:
+    build: ./slave
+    depends_on:
+      - master3
+    command: "-Option.ClientInfoOption.ClientID=CLIENT7 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+
+  slave8:
+    build: ./slave
+    depends_on:
+      - master3
+    command: "-Option.ClientInfoOption.ClientID=CLIENT8 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"

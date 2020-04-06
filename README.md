@@ -29,6 +29,12 @@ docker build -t pressure_meter_slave slave
 docker run pressure_meter_slave -Option.ClientInfoOption.ClientID=CLIENT0 -Option.ClientInfoOption.ServiceType=TYPE0 -Option.GogisnetOption.InitServerOption.BoardCastAddr=172.17.0.2
 ```
 
+##### 直接使用测试docker-compose.yml
+
+```sh
+docker-compose up
+```
+
 #### Instructions
 
 1.  xxxx

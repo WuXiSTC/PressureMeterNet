@@ -3,6 +3,8 @@ gitee.com/WuXiSTC/PressureMeter v0.0.0-20200406132923-4ab0e9810968 h1:jgZD3hlVbO
 gitee.com/WuXiSTC/PressureMeter v0.0.0-20200406132923-4ab0e9810968/go.mod h1:TIwNHoOTf9mOdNzP6S2k/ZRA1QzLuL7tOAdF8DH9hRY=
 gitee.com/WuXiSTC/PressureMeter v0.0.0-20200406135514-712b8e80b7e2 h1:MA9D+RyB8oUCnyJagbq+E9k2jhh/thZBPm7F8vwHGEA=
 gitee.com/WuXiSTC/PressureMeter v0.0.0-20200406135514-712b8e80b7e2/go.mod h1:TIwNHoOTf9mOdNzP6S2k/ZRA1QzLuL7tOAdF8DH9hRY=
+gitee.com/WuXiSTC/PressureMeter v0.0.0-20200406160535-77895427a949 h1:SHPZ6z8F+m0AuVxBxRKf9KAgVMZNSjAZCfawMk+0YZk=
+gitee.com/WuXiSTC/PressureMeter v0.0.0-20200406160535-77895427a949/go.mod h1:TIwNHoOTf9mOdNzP6S2k/ZRA1QzLuL7tOAdF8DH9hRY=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/Joker/hpp v0.0.0-20180418125244-6893e659854a/go.mod h1:MzD2WMdSxvbHw5fM/OXOFily/lipJWRc9C1px0Mt0ZE=
@@ -227,6 +229,8 @@ golang.org/x/sys v0.0.0-20200331124033-c3d80250170d h1:nc5K6ox/4lTFbMVSL9WRR81ix
 golang.org/x/sys v0.0.0-20200331124033-c3d80250170d/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20200406113430-c6e801f48ba2 h1:Z9pPywZscwuw0ijrLEbTzW9lppFgBY4HDgbvoDnreQs=
 golang.org/x/sys v0.0.0-20200406113430-c6e801f48ba2/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20200406155108-e3b113bbe6a4 h1:c1Sgqkh8v6ZxafNGG64r8C8UisIW2TKMJN8P86tKjr0=
+golang.org/x/sys v0.0.0-20200406155108-e3b113bbe6a4/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2 h1:tW2bmiBqwgJj/UpqtC8EpXEZVYOwU0yG4iWbprSVAcs=
 golang.org/x/text v0.3.2/go.mod h1:bEr9sfX3Q8Zfm5fL9x+3itogRgK3+ptLWKqgva+5dAk=
