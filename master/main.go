@@ -23,7 +23,7 @@ func main() {
 	ctx, cancel := context.WithCancel(ctxBackground)
 	defer cancel()
 
-	app := PressureMeterInit(ctx, opt.PressureMeterConfig) //PressureMeter服务器初始化
+	app := PressureMeterInit(server, ctx, opt.PressureMeterConfig) //PressureMeter服务器初始化
 
 	GraphAPIInit(server, app, opt) //全网连接图API初始化
 

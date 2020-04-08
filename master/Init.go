@@ -3,11 +3,14 @@ package main
 import (
 	"PressureMeterNet/master/option"
 	"context"
+	"encoding/json"
 	"fmt"
 	"gitee.com/WuXiSTC/PressureMeter"
+	"gitee.com/WuXiSTC/PressureMeter/Model/TaskList"
 	"github.com/kataras/iris"
 	irisContext "github.com/kataras/iris/context"
 	"github.com/yindaheng98/gogisnet/grpc"
+	pb "github.com/yindaheng98/gogisnet/grpc/protocol/protobuf"
 	"github.com/yindaheng98/gogisnet/grpc/server"
 )
 
@@ -20,9 +23,13 @@ func ServerInit(opt option.Option) *server.Server {
 	return s
 }
 
-func PressureMeterInit(ctx context.Context, opt option.PressureMeterConfig) *iris.Application {
+func PressureMeterInit(s *server.Server, ctx context.Context, opt option.PressureMeterConfig) *iris.Application {
 	PressureMeterConfig := PressureMeter.Config{}
 	opt.PutConfig(&PressureMeterConfig)
+	PressureMeterConfig.ModelConfig.UpdateStateCallback = func(list TaskList.TaskStateList) {
+		si := s.GetS2SInfo().ServerInfo.(*pb.ServerInfo)
+		si.AdditionalInfo["TaskList"], _ = json.Marshal(list)
+	}
 	return PressureMeter.Init(ctx, PressureMeterConfig) //PressureMeter服务器初始化
 }
 
