@@ -35,7 +35,7 @@ func EventInit(cli *client.Client, mpc *MultiProcessController.MultiProcessContr
 			mpc.StartN(uint64(TaskAccN)) //更新MPC
 			log.Println(fmt.Sprintf("PressureMeter update to %s succeeded: %s", si.ServerID, AdditionalInfo))
 			ci := cli.GetC2SInfo().ClientInfo.(*pb.ClientInfo)
-			ci.AdditionalInfo["JmeterAddresses"] = GetAddrs(opt, uint16(TaskAccN)) //更新客户端信息
+			ci.AdditionalInfo["JmeterAddresses"] = string(GetAddrs(opt, uint16(TaskAccN))) //更新客户端信息
 		}
 	}
 	pmu := new(sync.Mutex)                            //线程锁

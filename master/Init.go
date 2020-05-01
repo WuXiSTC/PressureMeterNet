@@ -15,9 +15,9 @@ import (
 )
 
 func ServerInit(opt option.Option) *server.Server {
-	opt.ServerInfoOption.AdditionalInfo["AccessAddress"] = []byte(opt.AccessAddr)
+	opt.ServerInfoOption.AdditionalInfo["AccessAddress"] = opt.AccessAddr
 	opt.ServerInfoOption.AdditionalInfo["TaskAccN"] =
-		[]byte(fmt.Sprintf("%d", opt.PressureMeterConfig.ModelConfig.DaemonConfig.TaskAccN))
+		fmt.Sprintf("%d", opt.PressureMeterConfig.ModelConfig.DaemonConfig.TaskAccN)
 	s := grpc.NewServer(opt.ServerInfoOption, opt.GogisnetOption) //Gogisnet初始化
 	EventInit(s, opt.PressureMeterConfig.ModelConfig.DaemonConfig.TaskAccN)
 	return s
@@ -28,7 +28,8 @@ func PressureMeterInit(s *server.Server, ctx context.Context, opt option.Pressur
 	opt.PutConfig(&PressureMeterConfig)
 	PressureMeterConfig.ModelConfig.UpdateStateCallback = func(list TaskList.TaskStateList) {
 		si := s.GetS2SInfo().ServerInfo.(*pb.ServerInfo)
-		si.AdditionalInfo["TaskList"], _ = json.Marshal(list)
+		tl, _ := json.Marshal(list)
+		si.AdditionalInfo["TaskList"] = string(tl)
 	}
 	return PressureMeter.Init(ctx, PressureMeterConfig) //PressureMeter服务器初始化
 }

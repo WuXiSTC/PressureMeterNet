@@ -1,9 +1,10 @@
 version: "3"
 services:
+  # 192.168.56.102是从我的主机访问到虚拟机的地址，请根据需求自行修改
   master1:
     build: ./master
-    command: "-Option.ServerInfoOption.ServerID=SERVER1 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=4"
-    ports: 
+    command: "-Option.ServerInfoOption.ServerID=SERVER1 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=4 -Option.AccessAddr=192.168.56.102:80"
+    ports:
       - 80:8080
   slave1:
     build: ./slave
@@ -28,10 +29,10 @@ services:
 
   master2:
     build: ./master
-    command: "-Option.ServerInfoOption.ServerID=SERVER2 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=2 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4241"
+    command: "-Option.ServerInfoOption.ServerID=SERVER2 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=2 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4241 -Option.AccessAddr=192.168.56.102:81"
     depends_on:
       - master1
-    ports: 
+    ports:
       - 81:8080
   slave5:
     build: ./slave
@@ -46,10 +47,10 @@ services:
 
   master3:
     build: ./master
-    command: "-Option.ServerInfoOption.ServerID=SERVER3 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=1 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4241"
+    command: "-Option.ServerInfoOption.ServerID=SERVER3 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=1 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4241 -Option.AccessAddr=192.168.56.102:82"
     depends_on:
       - master2
-    ports: 
+    ports:
       - 82:8080
   slave7:
     build: ./slave

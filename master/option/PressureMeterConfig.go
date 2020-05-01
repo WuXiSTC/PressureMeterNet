@@ -33,7 +33,8 @@ type URLConfig struct {
 	StartTask  string `yaml:"StartTask" usage:"URL for starting a task."`
 	StopTask   string `yaml:"StopTask" usage:"URL for stopping a task."`
 	GetState   string `yaml:"GetState" usage:"URL for getting the running state of a task."`
-	GraphQuery string `yaml:"GraphQueryURL" usage:"URL for GraphQuery service."`
+	GetTasks   string `yaml:"GetTasks" usage:"URL for getting all the tasks."`
+	GraphQuery string `yaml:"GraphQuery" usage:"URL for GraphQuery service."`
 }
 
 func defaultURLConfig() URLConfig {

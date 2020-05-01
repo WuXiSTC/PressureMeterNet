@@ -36,7 +36,7 @@ func EventInit(s *server.Server, TaskAccN uint16) {
 	}
 	UpdateClient := func(info message.ClientInfo) {
 		var Addrs []string
-		if err := json.Unmarshal(info.(*pb.ClientInfo).AdditionalInfo["JmeterAddresses"], &Addrs); err != nil {
+		if err := json.Unmarshal([]byte(info.(*pb.ClientInfo).AdditionalInfo["JmeterAddresses"]), &Addrs); err != nil {
 			handleErr(err, info) //反序列化出错
 		} else if len(Addrs) < int(TaskAccN) { //长度不够
 			handleErr(errors.New("len(Addrs) < int(TaskAccN),长度不足"), info)

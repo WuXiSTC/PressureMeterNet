@@ -1,16 +1,17 @@
 ServerInfoOption:
     ServerID: undefined
     ServiceType: undefined
-    AdditionalInfo: ""
+    AdditionalInfo: {}
 PressureMeterConfig:
     ModelConfig:
         DaemonConfig:
             TaskAccN: 4
-            TaskQSize: 100
+            RestTime: 5s
         TaskConfig:
             JmxDir: Data/jmx
             JtlDir: Data/jtl
             logDir: Data/log
+            BasePort: 4445
     URLConfig:
         NewTask: Task/new
         DeleteTask: Task/delete
@@ -20,6 +21,8 @@ PressureMeterConfig:
         StartTask: Task/start
         StopTask: Task/stop
         GetState: Task/getState
+        GetTasks: Task/getTasks
+        GraphQuery: GraphQuery
 GogisnetOption:
     ServiceOption:
         S2SRegistryOption:
@@ -64,21 +67,21 @@ GogisnetOption:
         ServerInfoOption:
             ServerID: undefined
             ServiceType: undefined
-            AdditionalInfo: ""
+            AdditionalInfo: {}
         BoardCastAddr: undefined
         S2CInfoOption:
             ServerInfoOption:
                 ServerID: undefined
                 ServiceType: undefined
-                AdditionalInfo: ""
+                AdditionalInfo: {}
             BoardCastAddr: undefined
 ListenerOption:
     GogisnetListenerOption:
         S2SListenNetwork: tcp
-        S2SListenAddr: localhost:4241
+        S2SListenAddr: 0.0.0.0:4241
         S2CListenNetwork: tcp
-        S2CListenAddr: localhost:4240
+        S2CListenAddr: 0.0.0.0:4240
         GraphQueryListenNetwork: tcp
-        GraphQueryListenAddr: localhost:4242
-    PressureMeterListenAddr: :80
-GraphQueryURL: Graph
+        GraphQueryListenAddr: 0.0.0.0:4242
+    PressureMeterListenAddr: 0.0.0.0:8080
+AccessAddr: 192.168.56.1:8080
