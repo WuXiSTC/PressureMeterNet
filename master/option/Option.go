@@ -3,6 +3,7 @@ package option
 import (
 	"github.com/yindaheng98/gogisnet/grpc/option"
 	"github.com/yindaheng98/gogisnet/grpc/server"
+	"time"
 )
 
 type Option struct {
@@ -11,6 +12,7 @@ type Option struct {
 	GogisnetOption      server.Option           `yaml:"GogisnetOption" usage:"Option for gogisnet."`
 	ListenerOption      ListenerOption          `yaml:"ListenerOption" usage:"Option for port listen."`
 	AccessAddr          string                  `yaml:"AccessAddr" usage:"The addr for the accessing from outside network."`
+	GraphQueryTimeout   time.Duration           `yaml:"GraphQueryTimeout" usage:"Time limit for GraphQuery."`
 }
 
 func DefaultOption() Option {
@@ -20,6 +22,7 @@ func DefaultOption() Option {
 		GogisnetOption:      server.DefaultOption(),
 		ListenerOption:      defaultListenerOption(),
 		AccessAddr:          option.GetIP() + ":8080",
+		GraphQueryTimeout:   10e9,
 	}
 }
 

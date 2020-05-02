@@ -36,6 +36,6 @@ func PressureMeterInit(s *server.Server, ctx context.Context, opt option.Pressur
 
 func GraphAPIInit(s *server.Server, app *iris.Application, opt option.Option) {
 	app.Get(opt.PressureMeterConfig.URLConfig.GraphQuery, func(ctx irisContext.Context) {
-		_, _ = ctx.Write([]byte(s.GetGraph(context.Background()).String()))
+		_, _ = ctx.Write([]byte(s.GetGraph(context.Background(), opt.GraphQueryTimeout).String()))
 	})
 }
