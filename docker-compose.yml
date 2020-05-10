@@ -3,33 +3,48 @@ services:
   # 192.168.56.102是从我的主机访问到虚拟机的地址，请根据需求自行修改
   master1:
     build: ./master
-    command: "-Option.ServerInfoOption.ServerID=SERVER1 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=4 -Option.AccessAddr=192.168.56.102:80"
+    command: 
+      - -Option.ServerInfoOption.ServerID=SERVER1
+      - -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=4
+      - -Option.AccessAddr=192.168.56.102:80
     ports:
       - 80:8080
   slave1:
     build: ./slave
     depends_on:
       - master1
-    command: "-Option.ClientInfoOption.ClientID=CLIENT1 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+    command: 
+      - -Option.ClientInfoOption.ClientID=CLIENT1
+      - -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240
   slave2:
     build: ./slave
     depends_on:
       - master1
-    command: "-Option.ClientInfoOption.ClientID=CLIENT2 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+    command: 
+      - -Option.ClientInfoOption.ClientID=CLIENT2
+      - -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240
   slave3:
     build: ./slave
     depends_on:
       - master1
-    command: "-Option.ClientInfoOption.ClientID=CLIENT3 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+    command: 
+      - -Option.ClientInfoOption.ClientID=CLIENT3
+      - -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240
   slave4:
     build: ./slave
     depends_on:
       - master1
-    command: "-Option.ClientInfoOption.ClientID=CLIENT4 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+    command: 
+      - -Option.ClientInfoOption.ClientID=CLIENT4
+      - -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240
 
   master2:
     build: ./master
-    command: "-Option.ServerInfoOption.ServerID=SERVER2 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=2 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4241 -Option.AccessAddr=192.168.56.102:81"
+    command: 
+      - -Option.ServerInfoOption.ServerID=SERVER2
+      - -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=2
+      - -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4241
+      - -Option.AccessAddr=192.168.56.102:81
     depends_on:
       - master1
     ports:
@@ -38,16 +53,24 @@ services:
     build: ./slave
     depends_on:
       - master2
-    command: "-Option.ClientInfoOption.ClientID=CLIENT5 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+    command: 
+      - -Option.ClientInfoOption.ClientID=CLIENT5
+      - -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240
   slave6:
     build: ./slave
     depends_on:
       - master2
-    command: "-Option.ClientInfoOption.ClientID=CLIENT6 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+    command: 
+      - -Option.ClientInfoOption.ClientID=CLIENT6
+      - -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240
 
   master3:
     build: ./master
-    command: "-Option.ServerInfoOption.ServerID=SERVER3 -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=1 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4241 -Option.AccessAddr=192.168.56.102:82"
+    command: 
+      - -Option.ServerInfoOption.ServerID=SERVER3
+      - -Option.GogisnetOption.ServiceOption.S2CRegistryOption.MaxRegistrants=1
+      - -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4241
+      - -Option.AccessAddr=192.168.56.102:82
     depends_on:
       - master2
     ports:
@@ -56,10 +79,14 @@ services:
     build: ./slave
     depends_on:
       - master3
-    command: "-Option.ClientInfoOption.ClientID=CLIENT7 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+    command: 
+      - -Option.ClientInfoOption.ClientID=CLIENT7
+      - -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240
 
   slave8:
     build: ./slave
     depends_on:
       - master3
-    command: "-Option.ClientInfoOption.ClientID=CLIENT8 -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240"
+    command: 
+      - -Option.ClientInfoOption.ClientID=CLIENT8
+      - -Option.GogisnetOption.InitServerOption.BoardCastAddr=master1:4240
