@@ -64,4 +64,27 @@ func EventInit(s *server.Server, TaskAccN uint16) {
 	s.Events.S2CRegistryEvent.UpdateConnection.Enable()
 	s.Events.ClientDisconnection.AddHandler(DeleteClient)
 	s.Events.ClientDisconnection.Enable()
+
+	S2SEventLogger := func(op, dir string) func(info message.S2SInfo) {
+		return func(info message.S2SInfo) {
+			log.Println(fmt.Sprintf("%s connection %s %s", op, dir, info.GetServerID()))
+		}
+	}
+	s.Events.S2SRegistrantEvent.NewConnection.AddHandler(S2SEventLogger("New", "to"))
+	s.Events.S2SRegistrantEvent.NewConnection.Enable()
+	s.Events.S2SRegistrantEvent.UpdateConnection.AddHandler(S2SEventLogger("Update", "to"))
+	s.Events.S2SRegistrantEvent.UpdateConnection.Enable()
+	s.Events.S2SRegistryEvent.NewConnection.AddHandler(S2SEventLogger("New", "from"))
+	s.Events.S2SRegistryEvent.NewConnection.Enable()
+	s.Events.S2SRegistryEvent.UpdateConnection.AddHandler(S2SEventLogger("Update", "from"))
+	s.Events.S2SRegistryEvent.UpdateConnection.Enable()
+
+	s.Events.S2SRegistrantEvent.Disconnection.AddHandler(func(info message.S2SInfo, err error) {
+		log.Println(fmt.Sprintf("Dicsonnection from %s because of %s", info.GetServerID(), err.Error()))
+	})
+	s.Events.S2SRegistrantEvent.Disconnection.Enable()
+	s.Events.S2SRegistryEvent.Disconnection.AddHandler(func(info message.S2SInfo) {
+		log.Println(fmt.Sprintf("Dicsonnection from %s", info.GetServerID()))
+	})
+	s.Events.S2SRegistryEvent.Disconnection.Enable()
 }
