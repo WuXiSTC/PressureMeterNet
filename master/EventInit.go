@@ -80,7 +80,7 @@ func EventInit(s *server.Server, TaskAccN uint16) {
 	s.Events.S2SRegistryEvent.UpdateConnection.Enable()
 
 	s.Events.S2SRegistrantEvent.Disconnection.AddHandler(func(info message.S2SInfo, err error) {
-		log.Println(fmt.Sprintf("Dicsonnection from %s because of %s", info.GetServerID(), err.Error()))
+		log.Println(fmt.Sprintf("Dicsonnection from %s because of %s", info.GetServerID(), err))
 	})
 	s.Events.S2SRegistrantEvent.Disconnection.Enable()
 	s.Events.S2SRegistryEvent.Disconnection.AddHandler(func(info message.S2SInfo) {
